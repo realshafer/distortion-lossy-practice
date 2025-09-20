@@ -4,10 +4,9 @@ let playButton, stopButton, answerButton, originalButton;
 let player, fileName, fSize;
 
 function preload() {
-  sound1 = loadSound('assets/Eno_DigitalClip_6dB.mp3');
-  sound2 = loadSound('assets/Eno_DigitalClip_12dB.mp3');
-  sound3 = loadSound('assets/Eno_DigitalClip_18dB.mp3');
-  sound4 = loadSound('assets/Eno_DigitalClip_24dB.mp3');
+  sound1 = loadSound('assets/Eno_Lossy_32kbps.mp3');
+  sound2 = loadSound('assets/Eno_Lossy_64kbps.mp3');
+  sound3 = loadSound('assets/Eno_Lossy_96kbps.mp3');
 
   // 🔊 original file (NOT part of random pool)
   originalSound = loadSound('assets/EnoOriginal.mp3');
@@ -24,13 +23,13 @@ function setup(){
   // Title
   let titleSize = fSize / 2;
   textSize(titleSize);
-  text("Digital Clipping Practice", width / 2, height / 9);
+  text("Lossy MP3 Compression Practice", width / 2, height / 9);
 
   // Subtitle
   let subtitleSize = fSize / 4;
   textSize(subtitleSize);
   let lineSpacing = subtitleSize * 1.5;
-  text("+6, +12, +18, +24", width / 2, height / 9 + lineSpacing);
+  text("32kbps, 64kbps, 96kbps", width / 2, height / 9 + lineSpacing);
 
   // choose first random sound
   chooseSound();
@@ -109,18 +108,18 @@ let secondLastChoice = -1;
 function chooseSound() {
   let choice;
   do {
-    choice = int(random(4));  // 0–3
+    choice = int(random(3));  // 0–3
   } while (choice === lastChoice && choice === secondLastChoice);
 
   secondLastChoice = lastChoice;
   lastChoice = choice;
 
   if (choice === 0) {
-    player = sound1; fileName = "+6 Digital Clipping";
+    player = sound1; fileName = "32kbps MP3";
   } else if (choice === 1) {
-    player = sound2; fileName = "+12 Digital Clipping";
+    player = sound2; fileName = "64kbps MP3";
   } else if (choice === 2) {
-    player = sound3; fileName = "+18 Digital Clipping";
+    player = sound3; fileName = "96kbps MP3";
   } else if (choice === 3) {
     player = sound4; fileName = "+24 Digital Clipping";
   }
